@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        body {
+            background-color: #690c05;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif; /* Adjust font for better readability */
+        }
+
+        .container {
+            background-color: white;
+            border: 5px solid rgb(216, 148, 0);
+            border-radius: 15px;
+            padding: 80px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .submit-button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px; /* Adjust margin for better spacing */
+        }
+
+        .submit-button:hover {
+            background-color: darkgreen;
+        }
+
+        .back-button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px; /* Adjust margin for better spacing */
+            text-decoration: none; /* Remove underline */
+        }
+
+        .back-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Welcome</h2>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="confirmChoice" id="yesRadio" value="yes">
+            <label class="form-check-label" for="yesRadio">Yes</label>
+
+            <input class="form-check-input" type="radio" name="confirmChoice" id="noRadio" value="no" checked>
+            <label class="form-check-label" for="noRadio">No</label>
+        </div>
+        <button class="submit-button" id="confirmButton">OK</button>
+        <a href="home.html" class="back-button">Back to Home</a>
+    </div>
+
+    <script>
+        document.getElementById("confirmButton").addEventListener("click", function () {
+            // Create a custom confirmation dialog
+            var confirmDialog = document.createElement("div");
+            confirmDialog.style.position = "fixed";
+            confirmDialog.style.top = "0";
+            confirmDialog.style.left = "0";
+            confirmDialog.style.width = "100%";
+            confirmDialog.style.height = "100%";
+            confirmDialog.style.backgroundColor = "rgba(0,0,0,0.5)";
+            confirmDialog.style.display = "flex";
+            confirmDialog.style.justifyContent = "center";
+            confirmDialog.style.alignItems = "center";
+            confirmDialog.style.zIndex = "1000";
+
+            var confirmBox = document.createElement("div");
+            confirmBox.style.backgroundColor = "white";
+            confirmBox.style.padding = "20px";
+            confirmBox.style.borderRadius = "10px";
+            confirmBox.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
+            confirmBox.style.textAlign = "center";
+
+            var message = document.createElement("p");
+            message.textContent = "Are you sure you want to confirm?";
+            confirmBox.appendChild(message);
+
+            var yesButton = document.createElement("button");
+            yesButton.textContent = "Yes";
+            yesButton.style.backgroundColor = "green";
+            yesButton.style.color = "white";
+            yesButton.style.border = "none";
+            yesButton.style.padding = "10px 20px";
+            yesButton.style.borderRadius = "5px";
+            yesButton.style.cursor = "pointer";
+            yesButton.style.marginRight = "10px";
+            yesButton.addEventListener("click", function () {
+                document.body.removeChild(confirmDialog);
+                alert("You confirmed!");
+                // Perform further actions if confirmed
+            });
+            confirmBox.appendChild(yesButton);
+
+            var noButton = document.createElement("button");
+            noButton.textContent = "No";
+            noButton.style.backgroundColor = "red";
+            noButton.style.color = "white";
+            noButton.style.border = "none";
+            noButton.style.padding = "10px 20px";
+            noButton.style.borderRadius = "5px";
+            noButton.style.cursor = "pointer";
+            noButton.addEventListener("click", function () {
+                document.body.removeChild(confirmDialog);
+                alert("You cancelled!");
+                // Handle cancellation
+            });
+            confirmBox.appendChild(noButton);
+
+            confirmDialog.appendChild(confirmBox);
+            document.body.appendChild(confirmDialog);
+        });
+    </script>
+</body>
+
+</html>
